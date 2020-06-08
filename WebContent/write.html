@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <title></title>
+   <style type="text/css">
+        @import url("css/template.css");
+        #poemTitle{
+            width: 80%;
+            background-color:whitesmoke;
+        }
+        #poemContents{
+            width:80%;
+            height: 50%;
+            background-color:whitesmoke;
+        }
+        #form{
+            width: 100%;
+            height: 100%;
+        }
+   </style>
+</head>
+<body>
+<div id="header"><h2 id="title">따옴</h2></div>
+<div id="contents">
+    <form action="" id="form">
+        <input type="text" id="poemTitle"/><br><br>
+        <textarea id="poemContents"></textarea><br>
+        <input type="submit" value="작성" />
+    </form>
+</div>
+<div id="navigation">
+    <img src="img/homeButton.png" class="icon" onclick="main()"/>
+    <img src="img/listButton.png" class="icon" onclick="list()"/>
+    <img src="img/writeButton.png" class="icon" onclick="write()"/>
+    <img src="img/profileButton.png" class="icon" onclick="mypage()"/>
+</div>
+</body>
+</html>
+
+<script>
+    var main = () => {
+        location.href = "main.html"
+    }
+    var list = () => {
+        location.href = "list.html"
+    }
+    var write = () => {
+        location.href = "write.html"
+    }
+    var mypage = () => {
+        location.href = "mypage.html"
+    }
+</script>
