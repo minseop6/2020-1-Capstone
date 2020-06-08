@@ -5,46 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <title></title>
    <style type="text/css">
-      html, body {
-         margin: 0;
-         height: 100%;
-         overflow: hidden;
-      }
-      .navigation {
-         z-index: 99;
-         bottom: 0px;
-         left: 0px;
-         right: 0px;
-         position: absolute !important;
-         position: fixed;
-         border: solid black 1px;
-      }
-      .example {
-         height: 100%;
-         padding: 20px;
-      }
-      .header {
-         height: 15%;
-      }
-      #title{
-          padding: 20px;
-      }
-      .subheader {
-         height: 8%;
-      }
-      #subtitle{
-        padding: 20px;
-      }
-      .icon{
-        padding: 10px;
-        width: 25%;
-      }
+        @import url("css/template.css");
    </style>
 </head>
 <body>
-<div class="header"><h2 id="title">따옴</h2></div>
-<div class="subheader"><h3 id="subtitle">오늘의 시</h3></div>
-<div class="example">
+<div id="header"><h2 id="title">따옴</h2></div>
+<div id="subheader"><h3 id="subtitle">오늘의 시</h3></div>
+<div id="contents">
    경계<br><br>
 
    영시 영분 영초<br>
@@ -55,7 +22,7 @@
    횟집 밖으로<br>
    헤엄쳐간다<br>
 </div>
-<div class="navigation">
+<div id="navigation">
    <img src="img/writeButton.png" class="icon" />
    <img src="img/homeButton.png" class="icon" />
    <img src="img/profileButton.png" class="icon" />

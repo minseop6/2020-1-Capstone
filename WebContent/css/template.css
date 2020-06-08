@@ -1,0 +1,34 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+ }
+ #navigation {
+    z-index: 99;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    position: fixed;
+    border: solid black 1px;
+ }
+ #contents {
+    height: 100%;
+    padding: 20px;
+ }
+ #header {
+    height: 15%;
+ }
+ #title{
+     padding: 20px;
+ }
+ #subheader {
+    height: 8%;
+ }
+ #subtitle{
+   padding: 20px;
+ }
+ .icon{
+   padding: 10px;
+   width: 25%;
+ }
