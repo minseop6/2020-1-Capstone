@@ -24,9 +24,9 @@
 <body>
 <div id="header"><h2 id="title">따옴</h2></div>
 <div id="contents">
-    <form action="" id="form">
-        <input type="text" id="poemTitle"/><br><br>
-        <textarea id="poemContents"></textarea><br>
+    <form action="jsp/Write.jsp" id="form">
+        <input type="text" id="poemTitle" name="title" /><br><br>
+        <textarea id="poemContents" name="contents"></textarea><br>
         <input type="submit" value="작성" />
     </form>
 </div>
@@ -39,6 +39,8 @@
 </body>
 </html>
 
+<script src="js/jquery-1.12.0.min.js"></script>
+<script src="js/core.js"></script>
 <script>
     var main = () => {
         location.href = "main.html"
