@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <title></title>
    <style type="text/css">
-        @import url("/css/template.css");
+        @import url("css/template.css");
         #feed {
           height: 100%;
         }
@@ -75,7 +75,7 @@
 		str += "<div id='postTitle'>" + elem.getTitle() + "</div>";
 		str += "<div id='postContents'>" + elem.getContents() + "</div>";
 		str += "<div id='postSocial'>";
-		str += "<div id='likes'><img id='heartIcon' src=''img/heartIcon.png'></div>";
+		str += "<div id='likes'><img id='heartIcon' src='img/heartIcon.png'></div>";
 		str += "<div id='comments'>댓글</div>";
 		str += "</div>";
 		str += "</div>";
@@ -86,7 +86,7 @@
       <div id="postTitle">첫 시</div>
       <div id="postContents">가을하늘청명하네</div>
       <div id="postSocial">
-        <div id="likes"><img id="heartIcon" src="/img/heartIcon.png"></div>
+        <div id="likes"><img id="heartIcon" src="img/heartIcon.png"></div>
         <div id="comments">댓글</div>
       </div>
     </div>
