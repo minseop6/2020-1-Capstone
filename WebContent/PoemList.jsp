@@ -94,7 +94,7 @@
 <div id="navigation">
   <img src="img/homeButton.png" class="icon" onclick="main()"/>
   <img src="img/listButton.png" class="icon" onclick="list()"/>
-  <img src="img/writeButton.png" class="icon" onclick="write()"/>
+  <img src="img/writeButton.png" class="icon" onclick="write1()"/>
   <img src="img/profileButton.png" class="icon" onclick="mypage()"/>
 </div>
 </body>
@@ -103,14 +103,13 @@
 <script src="js/jquery-1.12.0.min.js"></script>
 <script src="js/core.js"></script>
 <script>
-
     var main = () => {
         location.href = "main.html"
     }
     var list = () => {
-        location.href = "list.html"
+        location.href = "PoemList.jsp"
     }
-    var write = () => {
+    var write1 = () => {
         location.href = "write.html"
     }
     var mypage = () => {
