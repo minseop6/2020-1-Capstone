@@ -71,7 +71,7 @@
 	list = dao.poemList();
 	for(PoemVO elem : list){
 		str = "";
-		str += "<div id='post'>";
+		str += "<div id='post' onclick='detail(" + elem.getNo() + ")'>";
 		str += "<div id='postTitle'>" + elem.getTitle() + "</div>";
 		str += "<div id='postContents'>" + elem.getContents() + "</div>";
 		str += "<div id='postSocial'>";
@@ -114,5 +114,10 @@
     }
     var mypage = () => {
         location.href = "mypage.html"
+    }
+    //상세보기
+    var detail = (no) => {
+    	alert(no);
+    	location.href = "Detail.jsp?no=" + no;
     }
 </script>

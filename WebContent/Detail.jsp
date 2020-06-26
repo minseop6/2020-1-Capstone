@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="DAO.*" %>
+<%@ page import="VO.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +68,7 @@
 		 #comments {
 		 	margin: 5px 0px;
 		 }
-		 input {
+		 #comment {
 		 	width: 80%;
 		 }
 		 #likeNum {
@@ -72,43 +77,45 @@
 	</style>
 </head>
 <body>
-<div id="subheader"><h3 id="subtitle">경계</h3></div>
-<div id="writer">이효정</div>
-<div id="contents">
+<%
+	int no = Integer.parseInt(request.getParameter("no"));
+	
+	PoemDAO poemDao = new PoemDAO();
+	UserDAO userDAO = new UserDAO();
+	PoemVO poem = poemDao.poem(no);
+	UserVO user = userDAO.user(poem.getUno());
 
-   영시 영분 영초<br>
-   생사의 모서리가<br>
-   하나가 되는 순간<br><br>
+	String str = "<div id='subheader'><h3 id='subtitle'>";
+	str += poem.getTitle();
+	str += "<div id='writer'>" + user.getId() + "</div>";
+	str += "<div id='contents'>" + poem.getContents() + "</div>";
+	str += "<div id='likeBar'><img id='like' src='img/heartIcon.png' /></div>";
+	str += "<div id='likeNum'>" + poem.getLike() + "</div>";
+	
+	out.print(str);
+%>
 
-   대가리가 잘린 광어가<br>
-   횟집 밖으로<br>
-   헤엄쳐간다<br>
-</div>
-<div id="likeBar">
-	<img id="like" src="img/heartIcon.png" />
-</div>
-<div id="likeNum">23</div>
 
 <div id="commentBar">
 	<div id="writeComment">
-		<input type="text" name="comment">
-		<button>write</button></div>
-	<div id="comments">
-		<div id="commentWriter">
-			이효정
-		</div>
-		<div id="comment">
-			좋은 글이네요
-		</div>
+		<form method="POST" action="jsp/CommentWrite.jsp">
+			<input type="text" id="comment" name="comment">
+			<input type="hidden" name="pno" value="<% out.print(no); %>">
+			<input type="submit" value="작성" />
+		</form>
 	</div>
-	<div id="comments">
-		<div id="commentWriter">
-			이효정
-		</div>
-		<div id="comment">
-			좋은 글이네요
-		</div>
-	</div>
+<%
+	CommentDAO commentDAO = new CommentDAO();
+	ArrayList<CommentVO> comments = commentDAO.commentList(no);
+	str = "";
+	for(CommentVO comment : comments){
+		str += "<div id='comments'>";
+		str += "<div id='commentWriter'>" + comment.getId() + "</div>";
+		str += "<div id='comment'>" + comment.getContents() + "</div>";
+		str += "</div>";
+	}
+	out.print(str);
+%>
 </div>
 <div id="navigation">
     <img src="img/homeButton.png" class="icon" onclick="main()"/>

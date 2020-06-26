@@ -79,4 +79,45 @@ public class UserDAO {
 			}
 		}
 	}
+	
+	public UserVO user(int uno) throws SQLException, NamingException {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "SELECT * FROM USER WHERE no = ?";
+			st = conn.prepareStatement(sql);
+			st.setInt(1, uno);
+			rs = st.executeQuery();
+			
+			UserVO vo = new UserVO();
+			while(rs.next()) {
+				vo.setNo(rs.getInt(1));
+				vo.setId(rs.getString(2));
+				vo.setPw(rs.getString(3));
+				vo.setContents_count(rs.getInt(4));
+				vo.setLike_count(rs.getInt(5));
+				vo.setComment_count(rs.getInt(6));
+				vo.setPower(rs.getInt(7));
+			}
+			
+			return vo;
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
 }

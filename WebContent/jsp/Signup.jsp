@@ -4,6 +4,8 @@
 <%@ page import="VO.*" %>
 
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	UserVO vo = new UserVO();
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");

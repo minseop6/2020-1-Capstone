@@ -13,4 +13,5 @@ public class CommentVO {
 	private String contents;
 	private int pno;
 	private int uno;
+	private String id;
 }

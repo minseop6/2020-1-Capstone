@@ -12,7 +12,7 @@
 
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
-		int uno = 1;
+		int uno = Integer.parseInt((String)session.getAttribute("no"));
 		
 		PoemVO vo = new PoemVO();
 		vo.setTitle(title);
@@ -22,7 +22,7 @@
 		PoemDAO dao = new PoemDAO();
 		String status = dao.insert(vo);
 		if(status.equals("OK")){
-			response.sendRedirect("../list.html");
+			response.sendRedirect("../PoemList.jsp");
 		}else{
 			out.print("<script>alert('게시글 작성이 실패하였습니다')</script>");
 			out.println("<script>location.href='../write.html'</script>");
