@@ -137,6 +137,6 @@
         location.href = "write.html"
     }
     var mypage = () => {
-        location.href = "mypage.html"
+        location.href = "Mypage.jsp"
     }
 </script>

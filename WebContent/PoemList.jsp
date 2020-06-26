@@ -64,19 +64,22 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	PoemDAO dao = new PoemDAO();
+	PoemDAO poemDao = new PoemDAO();
+	CommentDAO commentDao = new CommentDAO();
+	
 	ArrayList<PoemVO> list = new ArrayList<PoemVO>();
 	
 	String str = "";
-	list = dao.poemList();
+	list = poemDao.poemList();
 	for(PoemVO elem : list){
+		int comment_count = commentDao.commentList(elem.getNo()).size();
 		str = "";
 		str += "<div id='post' onclick='detail(" + elem.getNo() + ")'>";
 		str += "<div id='postTitle'>" + elem.getTitle() + "</div>";
 		str += "<div id='postContents'>" + elem.getContents() + "</div>";
 		str += "<div id='postSocial'>";
-		str += "<div id='likes'><img id='heartIcon' src='img/heartIcon.png'></div>";
-		str += "<div id='comments'>댓글</div>";
+		str += "<div id='likes'><img id='heartIcon' src='img/heartIcon.png'>" + elem.getLike() + "</div>";
+		str += "<div id='comments'>댓글 " + comment_count + "</div>";
 		str += "</div>";
 		str += "</div>";
 		out.print(str);

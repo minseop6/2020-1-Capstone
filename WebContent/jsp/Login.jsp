@@ -17,7 +17,7 @@
 	if(no > 0){
 		session.setAttribute("no", no);
 		
-		response.sendRedirect("../mypage.html");
+		response.sendRedirect("../Mypage.jsp");
 	}else{
 		out.println("<script>alert('로그인 실패하였습니다.')</script>");
 		response.sendRedirect("../login.html");
