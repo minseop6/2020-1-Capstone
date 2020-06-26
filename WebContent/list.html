@@ -56,7 +56,7 @@
 <div id="header"><h2 id="title">따옴</h2></div>
 <div id="subheader"><h3 id="subtitle">오늘의 시</h3></div>
 <div id="feed">
-    <div id="post">
+    <div id="post" onclick="detail()">
       <div id="postTitle">첫 시</div>
       <div id="postContents">가을하늘청명하네</div>
       <div id="postSocial">
@@ -96,5 +96,8 @@
     }
     var mypage = () => {
         location.href = "mypage.html"
+    }
+    var detail = () => {
+      loction.href = "detial.html"
     }
 </script>

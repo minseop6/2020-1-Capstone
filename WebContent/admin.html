@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <title></title>
+   <style type="text/css">
+		html, body {
+		    margin: 0;
+		    height: 100%;
+		}
+		 #navigation {
+		    z-index: 99;
+		    bottom: 0px;
+		    left: 0px;
+		    right: 0px;
+		    position: absolute;
+		    position: fixed;
+		    border: solid black 1px;
+		 }
+		#searchBar {
+			position: relative;
+			width: 100%;
+			margin: 20px;
+		}
+		#submit {
+			float: left;
+		}
+		#searchbox {
+			float: left;
+		}
+		#filter {
+			float: left;
+		}
+		#feedlist{
+		    border: solid black 1px;
+			width: 100%;
+			height: auto;
+			position: relative;
+		}
+		#feed {
+			width: 100%;
+			height: 40px;
+			position: relative;
+		}
+		#feedTitle {
+			position: relative;
+			float: left;
+		}
+		#adminAction {
+			position: relative;
+			float: right;
+		}
+	</style>
+</head>
+<body>
+<div id="searchBar">
+	<div id="searchbox">
+		<input type="text" name="searchbox">
+	</div>
+	<button id="submit">search</button>
+	<select name="filter">
+		<option value="">제목</option>
+		<option value="">작성자</option>
+		<option value="">내용</option>
+		<option value="">신고글</option>
+	</select>
+</div>
+<div id="feedlist">
+	<div id="feed">
+		<div id="feedTitle">신고글1</div>
+		<button id="adminAction">삭제</button>
+	</div>
+	<div id="feed">
+		<div id="feedTitle">신고글1</div>
+		<button id="adminAction">삭제</button>
+	</div>
+	<div id="feed">
+		<div id="feedTitle">신고글1</div>
+		<button id="adminAction">삭제</button>
+	</div>	<div id="feed">
+		<div id="feedTitle">신고글1</div>
+		<button id="adminAction">삭제</button>
+	</div>
+</div>
+<div id="navigation">
+    <img src="img/homeButton.png" class="icon" onclick="main()"/>
+    <img src="img/listButton.png" class="icon" onclick="list()"/>
+    <img src="img/writeButton.png" class="icon" onclick="write1()"/>
+    <img src="img/profileButton.png" class="icon" onclick="mypage()"/>
+</div>
+</body>
+</html>
+
+<script>
+    var main = () => {
+        location.href = "main.html"
+    }
+    var list = () => {
+        location.href = "PoemList.jsp"
+    }
+    var write1 = () => {
+        location.href = "write.html"
+    }
+    var mypage = () => {
+        location.href = "mypage.html"
+    }
+</script>
