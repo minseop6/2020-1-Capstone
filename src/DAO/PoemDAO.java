@@ -18,11 +18,16 @@ public class PoemDAO {
 		try {
 			conn = ConnectionPool.getInstance().getConn();
 			
-			String sql = "INSERT INTO poem ";
-			sql += "(title, contents, uno, time) ";
-			sql += "VALUES (?, ?, ?, now())";
+			String sql1 = "UPDATE user SET contents_count = contents_count + 1 WHERE no = ?";
+			st = conn.prepareStatement(sql1);
+			st.setInt(1, vo.getUno());
+			st.executeUpdate();
 			
-			st = conn.prepareStatement(sql);
+			String sql2 = "INSERT INTO poem ";
+			sql2 += "(title, contents, uno, time) ";
+			sql2 += "VALUES (?, ?, ?, now())";
+			
+			st = conn.prepareStatement(sql2);
 			st.setString(1, vo.getTitle());
 			st.setString(2, vo.getContents());
 			st.setInt(3, vo.getUno());
@@ -70,6 +75,47 @@ public class PoemDAO {
 			}
 			
 			return list;
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
+	
+	public PoemVO poem(int no) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "SELECT * FROM poem WHERE no = ?";
+			
+			st = conn.prepareStatement(sql);
+			st.setInt(1, no);
+			rs = st.executeQuery();
+			
+			PoemVO vo = new PoemVO();
+			while(rs.next()) {
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setContents(rs.getString(3));
+				vo.setLike(rs.getInt(4));
+				vo.setUno(rs.getInt(5));
+				vo.setTime(rs.getTimestamp(6));
+				vo.setReport(rs.getInt(7));
+			}
+			
+			return vo;
 			
 		}finally {
 			if(rs != null) {

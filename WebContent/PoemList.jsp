@@ -58,15 +58,36 @@
    </style>
 </head>
 <body>
-<div id="header"><h2 id="title">ë°ì´</h2></div>
-<div id="subheader"><h3 id="subtitle">ì¤ëì ì</h3></div>
+<div id="header"><h2 id="title">따옴</h2></div>
+<div id="subheader"><h3 id="subtitle">오늘의 시</h3></div>
 <div id="feed">
-    <div id="post" onclick="detail()">
-      <div id="postTitle">ì²« ì</div>
-      <div id="postContents">ê°ìíëì²­ëªíë¤</div>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	PoemDAO dao = new PoemDAO();
+	ArrayList<PoemVO> list = new ArrayList<PoemVO>();
+	
+	String str = "";
+	list = dao.poemList();
+	for(PoemVO elem : list){
+		str = "";
+		str += "<div id='post' onclick='detail(" + elem.getNo() + ")'>";
+		str += "<div id='postTitle'>" + elem.getTitle() + "</div>";
+		str += "<div id='postContents'>" + elem.getContents() + "</div>";
+		str += "<div id='postSocial'>";
+		str += "<div id='likes'><img id='heartIcon' src='img/heartIcon.png'></div>";
+		str += "<div id='comments'>댓글</div>";
+		str += "</div>";
+		str += "</div>";
+		out.print(str);
+	}
+%>
+    <div id="post">
+      <div id="postTitle">첫 시</div>
+      <div id="postContents">가을하늘청명하네</div>
       <div id="postSocial">
-        <div id="likes"><img id="heartIcon" src="./img/heartIcon.png"></div>
-        <div id="comments">ëê¸</div>
+        <div id="likes"><img id="heartIcon" src="img/heartIcon.png"></div>
+        <div id="comments">댓글</div>
       </div>
     </div>
 </div>
@@ -82,15 +103,7 @@
 <script src="js/jquery-1.12.0.min.js"></script>
 <script src="js/core.js"></script>
 <script>
-  $(document).ready(() => {
-    AJAX.call("jsp/PoemFetch.jsp", null, (data) => {
-      var poems = data;
-      console.log("test1");
-      console.log(poems);
-    })
-  })
-
-  var main = () => {
+    var main = () => {
         location.href = "main.html"
     }
     var list = () => {
@@ -100,9 +113,10 @@
         location.href = "write.html"
     }
     var mypage = () => {
-        location.href = "mypage.html"
+    	location.href = "Mypage.jsp"
     }
-    var detail = () => {
-      loction.href = "detial.html"
+    //상세보기
+    var detail = (no) => {
+    	location.href = "Detail.jsp?no=" + no;
     }
 </script>

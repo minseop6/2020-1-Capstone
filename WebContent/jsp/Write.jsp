@@ -4,23 +4,28 @@
 <%@ page import="VO.*" %>
 
 <%
-	request.setCharacterEncoding("UTF-8");
-
-	String title = request.getParameter("title");
-	String contents = request.getParameter("contents");
-	int uno = 1;
-	
-	PoemVO vo = new PoemVO();
-	vo.setTitle(title);
-	vo.setContents(contents);
-	vo.setUno(uno);
-
-	PoemDAO dao = new PoemDAO();
-	String status = dao.insert(vo);
-	if(status.equals("OK")){
-		response.sendRedirect("list.html");
+	if(session.getAttribute("no") == null){
+		out.println("<script>alert('로그인이 필요한 서비스 입니다.');</script>");
+		out.println("<script>location.href='../write.html'</script>");
 	}else{
-		out.println("<script>alert('게시글 작성이 실패하였습니다')</script>");
-		response.sendRedirect("write.html");
+		request.setCharacterEncoding("UTF-8");
+
+		String title = request.getParameter("title");
+		String contents = request.getParameter("contents");
+		int uno = Integer.parseInt((String)session.getAttribute("no"));
+		
+		PoemVO vo = new PoemVO();
+		vo.setTitle(title);
+		vo.setContents(contents);
+		vo.setUno(uno);
+
+		PoemDAO dao = new PoemDAO();
+		String status = dao.insert(vo);
+		if(status.equals("OK")){
+			response.sendRedirect("../PoemList.jsp");
+		}else{
+			out.print("<script>alert('게시글 작성이 실패하였습니다')</script>");
+			out.println("<script>location.href='../write.html'</script>");
+		}	
 	}
 %>

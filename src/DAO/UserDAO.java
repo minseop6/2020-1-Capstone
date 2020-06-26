@@ -12,7 +12,7 @@ import VO.UserVO;
 
 public class UserDAO {
 
-	public String login(UserVO vo) throws SQLException, NamingException {
+	public int login(UserVO vo) throws SQLException, NamingException {
 		
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -28,11 +28,11 @@ public class UserDAO {
 			rs = st.executeQuery();
 			while(rs.next()) {
 				if(rs.getString(2).equals(vo.getId()) && rs.getString(3).equals(vo.getPw())) {
-					return "OK";
+					return rs.getInt(1);
 				}
 			}
 			
-			return "FAIL";
+			return -1;
 			
 		}finally {
 			if(rs != null) {
@@ -66,6 +66,47 @@ public class UserDAO {
 			int cnt = st.executeUpdate();
 					
 			return (cnt== 0) ? "ER" : "OK";
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
+	
+	public UserVO user(int uno) throws SQLException, NamingException {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "SELECT * FROM USER WHERE no = ?";
+			st = conn.prepareStatement(sql);
+			st.setInt(1, uno);
+			rs = st.executeQuery();
+			
+			UserVO vo = new UserVO();
+			while(rs.next()) {
+				vo.setNo(rs.getInt(1));
+				vo.setId(rs.getString(2));
+				vo.setPw(rs.getString(3));
+				vo.setContents_count(rs.getInt(4));
+				vo.setLike_count(rs.getInt(5));
+				vo.setComment_count(rs.getInt(6));
+				vo.setPower(rs.getInt(7));
+			}
+			
+			return vo;
 			
 		}finally {
 			if(rs != null) {

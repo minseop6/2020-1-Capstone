@@ -12,7 +12,7 @@ public class UserVO {
 	private int no;
 	private String id;
 	private String pw;
-	private String contents;
+	private int contents_count;
 	private int like_count;
 	private int comment_count;
 	private int power;

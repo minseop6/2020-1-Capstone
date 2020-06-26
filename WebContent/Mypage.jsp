@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="DAO.*" %>
+<%@ page import="VO.*" %>
+<%@ page import="java.util.*" %>
+<%
+	if(session.getAttribute("no") == null){
+		response.sendRedirect("login.html");
+	}else{
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,6 +166,9 @@
         location.href = "write.html"
     }
     var mypage = () => {
-        location.href = "mypage.html"
+        location.href = "Mypage.jsp"
     }
 </script>
+<%
+}
+%>

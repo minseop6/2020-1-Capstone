@@ -13,30 +13,5 @@ public class CommentVO {
 	private String contents;
 	private int pno;
 	private int uno;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
-	public String getContents() {
-		return contents;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-	public int getPno() {
-		return pno;
-	}
-	public void setPno(int pno) {
-		this.pno = pno;
-	}
-	public int getUno() {
-		return uno;
-	}
-	public void setUno(int uno) {
-		this.uno = uno;
-	}
-	
-	
+	private String id;
 }
