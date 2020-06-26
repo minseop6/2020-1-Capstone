@@ -113,11 +113,10 @@
         location.href = "write.html"
     }
     var mypage = () => {
-        location.href = "mypage.html"
+    	location.href = "Mypage.jsp"
     }
     //상세보기
     var detail = (no) => {
-    	alert(no);
     	location.href = "Detail.jsp?no=" + no;
     }
 </script>
