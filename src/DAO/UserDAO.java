@@ -46,4 +46,37 @@ public class UserDAO {
 			}
 		}
 	}
+	
+	public String signup(UserVO vo) throws SQLException, NamingException {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "INSERT INTO user ";
+			sql += "(id, pw, power) ";
+			sql += "VALUES (?, ?, 1)";
+			st = conn.prepareStatement(sql);
+			st.setString(1, vo.getId());
+			st.setString(2, vo.getPw());
+			int cnt = st.executeUpdate();
+					
+			return (cnt== 0) ? "ER" : "OK";
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
 }
