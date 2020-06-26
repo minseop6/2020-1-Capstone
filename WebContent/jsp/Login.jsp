@@ -11,8 +11,10 @@
 	vo.setPw(pw);
 	
 	UserDAO dao = new UserDAO();
-	String res = dao.login(vo);
-	if(res.equals("OK")){
+	int no = dao.login(vo);
+	if(no > 0){
+		session.setAttribute("no", no);
+		
 		response.sendRedirect("../mypage.html");
 	}else{
 		out.println("<script>alert('로그인 실패하였습니다.')</script>");

@@ -12,7 +12,7 @@ import VO.UserVO;
 
 public class UserDAO {
 
-	public String login(UserVO vo) throws SQLException, NamingException {
+	public int login(UserVO vo) throws SQLException, NamingException {
 		
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -28,11 +28,11 @@ public class UserDAO {
 			rs = st.executeQuery();
 			while(rs.next()) {
 				if(rs.getString(2).equals(vo.getId()) && rs.getString(3).equals(vo.getPw())) {
-					return "OK";
+					return rs.getInt(1);
 				}
 			}
 			
-			return "FAIL";
+			return -1;
 			
 		}finally {
 			if(rs != null) {
