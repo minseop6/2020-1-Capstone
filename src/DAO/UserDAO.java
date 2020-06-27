@@ -120,4 +120,30 @@ public class UserDAO {
 			}
 		}
 	}
+	
+	public String like(int uno) throws Exception {
+
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql1 = "UPDATE user SET like_count = like_count + 1 WHERE no = ?";
+			st = conn.prepareStatement(sql1);
+			st.setInt(1, uno);
+			int cnt = st.executeUpdate();
+			
+			return (cnt== 0) ? "ER" : "OK";
+			
+		}finally {
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
 }

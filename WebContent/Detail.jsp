@@ -89,7 +89,7 @@
 	str += poem.getTitle();
 	str += "<div id='writer'>" + user.getId() + "</div>";
 	str += "<div id='contents'>" + poem.getContents() + "</div>";
-	str += "<div id='likeBar'><img id='like' src='img/heartIcon.png' /></div>";
+	str += "<div id='likeBar' onclick='like()'><img id='like' src='img/heartIcon.png' /></div>";
 	str += "<div id='likeNum'>" + poem.getLike() + "</div>";
 	
 	out.print(str);
@@ -126,6 +126,7 @@
 </body>
 </html>
 
+<script src="js/jquery-1.12.0.min.js"></script>
 <script>
     var main = () => {
         location.href = "main.html"
@@ -138,5 +139,20 @@
     }
     var mypage = () => {
         location.href = "Mypage.jsp"
+    }
+    
+    //좋아요 기능
+    var like = () => {
+    	$.ajax({
+    		type: "GET",
+    		url: "jsp/Like.jsp?pno=<% out.print(no); %>",
+    		dataType: "text",
+    		error: function(){
+    			alert("ERROR");
+    		},
+    		success: function(res){
+    			$("#likeNum").text(res);
+    		}
+    	})
     }
 </script>

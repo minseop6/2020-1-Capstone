@@ -129,4 +129,41 @@ public class PoemDAO {
 			}
 		}
 	}
+	
+	@SuppressWarnings("resource")
+	public int like(int pno) throws Exception {
+
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql1 = "UPDATE poem SET poem.like = poem.like + 1 WHERE no = ?";
+			st = conn.prepareStatement(sql1);
+			st.setInt(1, pno);
+			st.executeUpdate();
+			
+			String sql2 = "SELECT poem.like FROM poem WHERE no = ?";
+			st = conn.prepareStatement(sql2);
+			st.setInt(1, pno);
+			rs = st.executeQuery();
+			rs.next();
+			int like = rs.getInt(1);
+			
+			return like;
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
 }
