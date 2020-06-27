@@ -7,6 +7,13 @@
 	if(session.getAttribute("no") == null){
 		response.sendRedirect("login.html");
 	}else{
+		PoemDAO poemDao = new PoemDAO();
+		CommentDAO commentDao = new CommentDAO();
+		UserDAO userDao = new UserDAO();
+		LikesDAO likesDao = new LikesDAO();
+		
+		int uno = (int)session.getAttribute("no");
+		UserVO vo = userDao.user(uno);
 %>
 <!DOCTYPE html>
 <html>
@@ -56,14 +63,14 @@
        		background-color: grey;
        	}
        	#wrotePagesNum {
-       		width: 23%;
+       		width: 20%;
        		height: 100%;
        		background-color: yellow;
        		margin: 0px 10px;
        		float: left;
        	}
        	#likesNum {
-       		width: 23%;
+       		width: 20%;
        		height: 100%;
 
        		background-color: yellow;
@@ -71,7 +78,7 @@
        		float: left
        	}
        	#commentsNum {
-       		width: 23%;
+       		width: 20%;
        		height: 100%;
 
        		background-color: yellow;
@@ -114,36 +121,58 @@
 <div id="contents">
 	<div id="profileImage"><img id="profilePic" src="./img/profileImage.png"></div>
 	<div id="profileDesc">
-		<div id="name">이름</div>
-		<div id="userName">김이박</div>
+		<div id="name">ID</div>
+		<div id="userName"><% vo.getId(); %></div>
 	</div>
 	<div id="userActivies">
-		<div id="wrotePagesNum"><p>작성글</p><div id="activityNum">33</div></div>
-		<div id="likesNum"><p>좋아요<div id="activityNum">33</div></p></div>
-		<div id="commentsNum"><p>댓글<div id="activityNum">33</div></p></div>
+		<div id="wrotePagesNum"><p>작성글</p><div id="activityNum"><% out.print(vo.getContents_count()); %></div></div>
+		<div id="likesNum"><p>좋아요<div id="activityNum"><% out.print(vo.getLike_count()); %></div></p></div>
+		<div id="commentsNum"><p>댓글<div id="activityNum"><% out.print(vo.getComment_count()); %></div></p></div>
 	</div>
 </div>
 <div id="Userfeed">
 	<div id="wrotePages">
 		<p>내가 쓴 글</p>
-		<div id='indivPages'>글1</div>
-		<div id='indivPages'>글2</div>
-		<div id='indivPages'>글3</div>
-		<div>더보기..</div>
+		<%
+			ArrayList<PoemVO> poemList = poemDao.poemList(uno);
+			String str = "";
+			for(PoemVO elem : poemList){
+				str += "<div id='indivPages'>";
+				str += elem.getTitle();
+				str += "</div>";
+			}
+			str += "<div>더보기..</div>";
+			out.print(str);
+		%>
 	</div>
 	<div id="wrotePages">
-		<p>내가 쓴 글</p>
-		<div id='indivPages'>글1</div>
-		<div id='indivPages'>글2</div>
-		<div id='indivPages'>글3</div>
-		<div>더보기..</div>
+		<p>내가 쓴 댓글</p>
+		<%
+			ArrayList<CommentVO> commentList = commentDao.commentListByUno(uno);
+			str = "";
+			for(CommentVO elem : commentList){
+				str += "<div id='indivPages'>";
+				str += elem.getContents();
+				str += "</div>";
+			}
+			str += "<div>더보기..</div>";
+			out.print(str);
+		%>
 	</div>
 	<div id="wrotePages">
-		<p>내가 쓴 글</p>
-		<div id='indivPages'>글1</div>
-		<div id='indivPages'>글2</div>
-		<div id='indivPages'>글3</div>
-		<div>더보기..</div>
+		<p>좋아요 한 글</p>
+		<%
+			ArrayList<Integer> likeList = likesDao.likeList(uno);
+			str = "";
+			for(int pno : likeList){
+				PoemVO poem = poemDao.poem(pno);
+				str += "<div id='indivPages'>";
+				str += poem.getTitle();
+				str += "</div>";
+			}
+			str += "<div>더보기..</div>";
+			out.print(str);
+		%>
 	</div>
 </div>
 <div id="navigation">

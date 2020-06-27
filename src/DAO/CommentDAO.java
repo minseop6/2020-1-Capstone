@@ -88,4 +88,47 @@ public class CommentDAO {
 			}
 		}
 	}
+	
+	public ArrayList<CommentVO> commentListByUno(int uno) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "SELECT * FROM comment WHERE uno = ?";
+			
+			st = conn.prepareStatement(sql);
+			st.setInt(1, uno);
+			rs = st.executeQuery();
+			
+			ArrayList<CommentVO> list = new ArrayList<CommentVO>();
+			while(rs.next()) {
+				CommentVO vo = new CommentVO();
+				
+				vo.setNo(rs.getInt(1));
+				vo.setContents(rs.getString(2));
+				vo.setPno(rs.getInt(3));
+				vo.setUno(rs.getInt(4));
+				vo.setId(rs.getString(5));
+				
+				list.add(vo);
+			}
+			
+			return list;
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
 }
