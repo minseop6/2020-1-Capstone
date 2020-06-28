@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="DAO.*" %>
+<%@ page import="VO.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +13,7 @@
 		html, body {
 		    margin: 0;
 		    height: 100%;
-		}
+		 }
 		 #navigation {
 		    z-index: 99;
 		    bottom: 0px;
@@ -17,6 +22,26 @@
 		    position: absolute;
 		    position: fixed;
 		    border: solid black 1px;
+		 }
+		 #contents {
+		    height: 100%;
+		    padding: 20px;
+		 }
+		 #header {
+		    height: 15%;
+		 }
+		 #title{
+		     padding: 20px;
+		 }
+		 #subheader {
+		    height: 8%;
+		 }
+		 #subtitle{
+		   padding: 20px;
+		 }
+		 .icon{
+		   padding: 10px;
+		   width: 18%;
 		 }
 		#searchBar {
 			position: relative;
@@ -60,28 +85,26 @@
 	</div>
 	<button id="submit">search</button>
 	<select name="filter">
-		<option value="">제목</option>
-		<option value="">작성자</option>
-		<option value="">내용</option>
-		<option value="">신고글</option>
+		<option value="">ì ëª©</option>
+		<option value="">ìì±ì</option>
+		<option value="">ë´ì©</option>
+		<option value="">ì ê³ ê¸</option>
 	</select>
 </div>
 <div id="feedlist">
-	<div id="feed">
-		<div id="feedTitle">신고글1</div>
-		<button id="adminAction">삭제</button>
-	</div>
-	<div id="feed">
-		<div id="feedTitle">신고글1</div>
-		<button id="adminAction">삭제</button>
-	</div>
-	<div id="feed">
-		<div id="feedTitle">신고글1</div>
-		<button id="adminAction">삭제</button>
-	</div>	<div id="feed">
-		<div id="feedTitle">신고글1</div>
-		<button id="adminAction">삭제</button>
-	</div>
+<%
+	PoemDAO poemDao = new PoemDAO();
+	ArrayList<PoemVO> list = poemDao.reportPoemList();
+	
+	String str = "";
+	for(PoemVO poem : list){
+		str += "<div id='feed'>";
+		str += "<div id='feedTitle'>" + poem.getTitle() + "</div>";
+		str += "<button id='adminAction' onclick='adminAction(" + poem.getNo() + ")'>삭제</button>";
+		str += "</div>";
+	}
+	out.print(str);
+%>
 </div>
 <div id="navigation">
     <img src="img/homeButton.png" class="icon" onclick="main()"/>
@@ -92,6 +115,7 @@
 </body>
 </html>
 
+<script src="js/jquery-1.12.0.min.js"></script>
 <script>
     var main = () => {
         location.href = "main.html"
@@ -104,5 +128,21 @@
     }
     var mypage = () => {
         location.href = "mypage.html"
+    }
+    
+    //게시글 삭제
+    var adminAction = (pno) => {
+    	$.ajax({
+    		type: "GET",
+    		url: "jsp/AdminAction.jsp?pno=" + pno,
+    		dataType: "text",
+    		error: function(){
+    			alert("ERROR");
+    		},
+    		success: function(res){
+    			alert("삭제 완료되었습니다.");
+    			location.href = location.href;
+    		}
+    	})
     }
 </script>

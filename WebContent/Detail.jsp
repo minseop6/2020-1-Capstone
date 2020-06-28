@@ -74,6 +74,10 @@
 		 #likeNum {
 		 	text-align: center;
 		 }
+		 #report{
+		 	float:right;
+		 	margin: 20px;
+		 }
 	</style>
 </head>
 <body>
@@ -85,7 +89,8 @@
 	PoemVO poem = poemDao.poem(no);
 	UserVO user = userDAO.user(poem.getUno());
 
-	String str = "<div id='subheader'><h3 id='subtitle'>";
+	String str = "<div id='subheader'><button id='report' onclick='report()'>신고</button>";
+	str += "<h3 id='subtitle'>";
 	str += poem.getTitle();
 	str += "<div id='writer'>" + user.getId() + "</div>";
 	str += "<div id='contents'>" + poem.getContents() + "</div>";
@@ -152,6 +157,21 @@
     		},
     		success: function(res){
     			$("#likeNum").text(res);
+    		}
+    	})
+    }
+    
+    //신고 기능
+    var report = () => {
+    	$.ajax({
+    		type: "GET",
+    		url: "jsp/Report.jsp?pno=<% out.print(no); %>",
+    		dataType: "text",
+    		error: function(){
+    			alert("ERROR");
+    		},
+    		success: function(res){
+    			alert("신고 접수되었습니다.");
     		}
     	})
     }
