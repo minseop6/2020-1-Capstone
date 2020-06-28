@@ -113,16 +113,20 @@
        		height: 43%;
        		overflow: scroll;
        	}
+       	#logout{
+       		float:right;
+       		margin: 10px;
+       	}
    </style>
 </head>
 <body>
-<div id="header"><h2 id="title">따옴</h2></div>
+<div id="header"><h2 id="title">따옴<button id="logout" onclick="logout()">로그아웃</button></h2></div>
 <div id="subheader"><h3 id="subtitle">profile</h3></div>
 <div id="contents">
 	<div id="profileImage"><img id="profilePic" src="./img/profileImage.png"></div>
 	<div id="profileDesc">
 		<div id="name">ID</div>
-		<div id="userName"><% vo.getId(); %></div>
+		<div id="userName"><% out.print(vo.getId()); %></div>
 	</div>
 	<div id="userActivies">
 		<div id="wrotePagesNum"><p>작성글</p><div id="activityNum"><% out.print(vo.getContents_count()); %></div></div>
@@ -184,6 +188,7 @@
 </body>
 </html>
 
+<script src="js/jquery-1.12.0.min.js"></script>
 <script>
     var main = () => {
         location.href = "main.html"
@@ -196,6 +201,21 @@
     }
     var mypage = () => {
         location.href = "Mypage.jsp"
+    }
+    
+    //로그아웃
+    var logout = () => {
+    	$.ajax({
+    		type: "GET",
+    		url: "jsp/Logout.jsp",
+    		dataType: "text",
+    		error: function(){
+    			alert("ERROR");
+    		},
+    		success: function(res){
+    			location.href = location.href;
+    		}
+    	})
     }
 </script>
 <%

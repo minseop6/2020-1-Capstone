@@ -13,11 +13,15 @@
 	vo.setPw(pw);
 	
 	UserDAO dao = new UserDAO();
-	int no = dao.login(vo);
-	if(no > 0){
-		session.setAttribute("no", no);
+	UserVO user = dao.login(vo);
+	if(user != null){
+		session.setAttribute("no", user.getNo());
 		
-		response.sendRedirect("../Mypage.jsp");
+		if(user.getPower() == 1){
+			response.sendRedirect("../Mypage.jsp");	
+		}else{
+			response.sendRedirect("../Admin.jsp");
+		}
 	}else{
 		out.println("<script>alert('로그인 실패하였습니다.')</script>");
 		response.sendRedirect("../login.html");
