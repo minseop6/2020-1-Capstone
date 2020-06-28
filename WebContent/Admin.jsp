@@ -81,14 +81,12 @@
 <body>
 <div id="searchBar">
 	<div id="searchbox">
-		<input type="text" name="searchbox">
+		<input type="text" id="txt">
 	</div>
-	<button id="submit">search</button>
-	<select name="filter">
-		<option value="">ì ëª©</option>
-		<option value="">ìì±ì</option>
-		<option value="">ë´ì©</option>
-		<option value="">ì ê³ ê¸</option>
+	<button onclick="filter()">search</button>
+	<select id="option" name="filter">
+		<option value="title">제목</option>
+		<option value="contents">내용</option>
 	</select>
 </div>
 <div id="feedlist">
@@ -99,7 +97,7 @@
 	String str = "";
 	for(PoemVO poem : list){
 		str += "<div id='feed'>";
-		str += "<div id='feedTitle'>" + poem.getTitle() + "</div>";
+		str += "<div id='feedTitle' onclick='detail(" + poem.getNo() + ")'>" + poem.getTitle() + "</div>";
 		str += "<button id='adminAction' onclick='adminAction(" + poem.getNo() + ")'>삭제</button>";
 		str += "</div>";
 	}
@@ -127,7 +125,7 @@
         location.href = "write.html"
     }
     var mypage = () => {
-        location.href = "mypage.html"
+        location.href = "Mypage.jsp"
     }
     
     //게시글 삭제
@@ -144,5 +142,29 @@
     			location.href = location.href;
     		}
     	})
+    }
+    
+    //필터링
+    var filter = () => {
+    	var txt = document.querySelector('#txt').value;
+    	var option = document.querySelector('#option').value;
+    	$.ajax({
+    		type: "GET",
+    		url: "jsp/Filter.jsp?txt=" + txt + "&option=" + option,
+    		dataType: "text",
+    		error: function(){
+    			alert("ERROR");
+    		},
+    		success: function(res){
+    			console.log(res);
+    			var elem = document.querySelector('#feedlist');
+    			elem.innerHTML = res;
+    		}
+    	})
+    }
+    
+  	//상세보기
+    var detail = (no) => {
+    	location.href = "Detail.jsp?no=" + no;
     }
 </script>

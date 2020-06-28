@@ -342,4 +342,92 @@ public class PoemDAO {
 			}
 		}
 	}
+	
+	public ArrayList<PoemVO> reportListByTitle(String title) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "SELECT * FROM poem WHERE title LIKE '%" + title + "%' AND report = 1";
+			
+			st = conn.prepareStatement(sql);
+			rs = st.executeQuery();
+			
+			ArrayList<PoemVO> list = new ArrayList<PoemVO>();
+			while(rs.next()) {
+				PoemVO vo = new PoemVO();
+				
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setContents(rs.getString(3));
+				vo.setLike(rs.getInt(4));
+				vo.setUno(rs.getInt(5));
+				vo.setTime(rs.getTimestamp(6));
+				vo.setReport(rs.getInt(7));
+				
+				list.add(vo);
+			}
+			
+			return list;
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
+	
+	public ArrayList<PoemVO> reportListByContents(String contents) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionPool.getInstance().getConn();
+			
+			String sql = "SELECT * FROM poem WHERE contents LIKE '%" + contents + "%' AND report = 1";
+			
+			st = conn.prepareStatement(sql);
+			rs = st.executeQuery();
+			
+			ArrayList<PoemVO> list = new ArrayList<PoemVO>();
+			while(rs.next()) {
+				PoemVO vo = new PoemVO();
+				
+				vo.setNo(rs.getInt(1));
+				vo.setTitle(rs.getString(2));
+				vo.setContents(rs.getString(3));
+				vo.setLike(rs.getInt(4));
+				vo.setUno(rs.getInt(5));
+				vo.setTime(rs.getTimestamp(6));
+				vo.setReport(rs.getInt(7));
+				
+				list.add(vo);
+			}
+			
+			return list;
+			
+		}finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(st != null) {
+				st.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+	}
 }
