@@ -9,25 +9,28 @@ html, body {
     right: 0px;
     position: absolute;
     position: fixed;
-    border: solid black 1px;
+    border-top: solid black 2px;
+    display: flex;
+    background-color : white;
  }
  #contents {
     height: 100%;
-    padding: 20px;
+    padding: 30px;
  }
  #header {
-    height: 15%;
+    height: auto;
  }
  #title{
-     padding: 20px;
+     padding: 30px;
  }
  #subheader {
-    height: 8%;
+    height: auto;
  }
  #subtitle{
-   padding: 20px;
+   padding: 30px;
  }
  .icon{
-   padding: 10px;
-   width: 18%;
+   padding: 30px;
+   width: 1%;
+   flex: 1;
  }

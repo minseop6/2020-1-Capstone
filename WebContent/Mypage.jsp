@@ -24,29 +24,24 @@
    <style type="text/css">
 
         @import url("css/template.css");
-        #contents {
-        	width: 100%;
-        }
         h3, h2 {
         	margin: 0px;
         	padding: 0px;
         }
         #header {
-        	height: 8%;
-        	background-color: red;
+        	height : auto;
+        	position : relative;
         }
         #subheader {
-        	height: 5%;
-        	background-color: blue;
         	position: relative;
         }
         #subtitle {
-        	margin: 0px;
+        	padding: 40px;
+        	font-size: 1.5em;
         }
         #profileImage {
         	padding: 10px;
         	width: 20%;
-        	background-color: red;
         	float: left;
         }
         #profilePic {
@@ -54,74 +49,92 @@
         }
         #profileDesc {
         	width: 70%;
-        	background-color: green;
         	float: left;
+          	margin: 8% 0;
+          	padding-left: 3%;
         }
 
        	#contents {
-       		height: 30%;
-       		background-color: grey;
+       		height: 22%;
+       		border-bottom : 2px solid black;
+       		padding-top: 0px;
        	}
        	#wrotePagesNum {
        		width: 20%;
        		height: 100%;
-       		background-color: yellow;
-       		margin: 0px 10px;
-       		float: left;
+			margin:0px;
+			float: left;
+			flex: 1;
+			text-align : center;
+			background-color : #D8D8D8;
+			margin: 10px;
+
        	}
        	#likesNum {
        		width: 20%;
        		height: 100%;
-
-       		background-color: yellow;
-       		margin: 0px 50px;
-       		float: left
+       		margin:0px;
+       		float: left;
+       		flex: 1;
+			text-align : center;
+			background-color : #D8D8D8;
+			margin: 10px;
        	}
        	#commentsNum {
        		width: 20%;
        		height: 100%;
-
-       		background-color: yellow;
-       		margin: 0px 10px;
        		float: right;
+			margin:0px;
+			flex: 1;
+			text-align : center;
+			background-color : #D8D8D8;
+			margin: 10px;
 
        	}
        	#userActivies {
-       		width: 90%;
-       		height: 50%;
-       		background-color: blue;
+       		width: 100%;
+       		height: 45%;
        		float: left;
+       		display: flex;
        	}
        	#activityNum {
        		height: 50%;
-       		background-color: green;
        	}
        	#wrotePages {
        		width: 100%;
-       		background-color: blue;
-       		padding: 20px;
+       		padding: 30px;
        		float: left;
        		margin-bottom: 20px;
        	}
        	#indivPages {
-       		background-color: red;
        		width: 90%;
        		margin: 3px 0px;
        		padding: 10px;
        	}
        	#Userfeed {
-       		height: 43%;
+       		height: 28%;
        		overflow: scroll;
+       		overflow-x : hidden;
        	}
        	#logout{
        		float:right;
        		margin: 10px;
        	}
+        #title {
+          padding: 40px;
+          font-size: 2.5em;
+        }
+    	#name {
+        	font-size: 2em;
+    	}
+    	#userName {
+    		font-size: 1.5em;
+    	}
    </style>
 </head>
 <body>
 <div id="header"><h2 id="title">따옴<button id="logout" onclick="logout()">로그아웃</button></h2></div>
-<div id="subheader"><h3 id="subtitle">profile</h3></div>
+<div id="subheader"><h3 id="subtitle">프로필</h3></div>
 <div id="contents">
 	<div id="profileImage"><img id="profilePic" src="./img/profileImage.png"></div>
 	<div id="profileDesc">
