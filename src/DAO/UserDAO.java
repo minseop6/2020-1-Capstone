@@ -22,7 +22,7 @@ public class UserDAO {
 		try {
 			conn = ConnectionPool.getInstance().getConn();
 			
-			String sql = "SELECT * FROM USER WHERE id = ?";
+			String sql = "SELECT * FROM user WHERE id = ?";
 			st = conn.prepareStatement(sql);
 			st.setString(1, vo.getId());
 			rs = st.executeQuery();
@@ -95,7 +95,7 @@ public class UserDAO {
 		try {
 			conn = ConnectionPool.getInstance().getConn();
 			
-			String sql = "SELECT * FROM USER WHERE no = ?";
+			String sql = "SELECT * FROM user WHERE no = ?";
 			st = conn.prepareStatement(sql);
 			st.setInt(1, uno);
 			rs = st.executeQuery();
