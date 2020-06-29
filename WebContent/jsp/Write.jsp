@@ -12,7 +12,8 @@
 
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
-		int uno = Integer.parseInt((String)session.getAttribute("no"));
+		int uno = (int)session.getAttribute("no");
+		System.out.println(uno);
 		
 		PoemVO vo = new PoemVO();
 		vo.setTitle(title);
