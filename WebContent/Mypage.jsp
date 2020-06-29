@@ -29,7 +29,7 @@
         	padding: 0px;
         }
         #header {
-        	height : auto;
+        	height : auto%;
         	position : relative;
         }
         #subheader {
@@ -105,6 +105,7 @@
        		padding: 30px;
        		float: left;
        		margin-bottom: 20px;
+       		overflow:hidden;
        	}
        	#indivPages {
        		width: 90%;
@@ -112,6 +113,7 @@
        		padding: 10px;
        	}
        	#Userfeed {
+       		width: 100%;
        		height: 28%;
        		overflow: scroll;
        		overflow-x : hidden;
