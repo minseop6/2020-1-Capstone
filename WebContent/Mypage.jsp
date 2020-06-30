@@ -55,7 +55,7 @@
         }
 
        	#contents {
-       		height: 22%;
+       		height: 32%;
        		border-bottom : 2px solid black;
        		padding-top: 0px;
        	}
@@ -135,8 +135,7 @@
    </style>
 </head>
 <body>
-<div id="header"><h2 id="title">따옴<button id="logout" onclick="logout()">로그아웃</button></h2></div>
-<div id="subheader"><h3 id="subtitle">프로필</h3></div>
+<div id="header"><h2 id="subtitle">프로필<button id="logout" onclick="logout()">로그아웃</button></h2></div>
 <div id="contents">
 	<div id="profileImage"><img id="profilePic" src="./img/profileImage.png"></div>
 	<div id="profileDesc">
