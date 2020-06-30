@@ -114,7 +114,7 @@
        	}
        	#Userfeed {
        		width: 100%;
-       		height: 28%;
+       		height: 35%;
        		overflow: scroll;
        		overflow-x : hidden;
        	}

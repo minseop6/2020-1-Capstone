@@ -7,20 +7,58 @@
    <style type="text/css">
         @import url("css/template.css");
         #id, #pw{
-            width: 50%;
-            background-color:whitesmoke;
+            width: 40%;
+            background-color:white;
+            float: right;
+ 			line-height: 10px;
+			padding: 8px;
+			margin: 5px;
         }
         #form{
             width: 100%;
             height: 100%;
         }
+         #title {
+          padding: 40px;
+          font-size: 2.5em;
+          margin: 0;
+        }
+		#subtitle {
+        	padding: 40px;
+        	font-size: 1.5em;
+        	margin: 0;
+        }
+		#contents {
+			width: 80%;
+		    height: auto;
+		    padding: 20px;
+		    font-size: 1.5em;
+		    margin: 0 auto;
+		    margin-top: 30px;
+		    margin-bottom: 30px;
+		    position:relative;
+		    padding: 20px;
+			background-color : #D8D8D8;
+			border-radius: 35px;
+		}
+		#guid {
+			float:left;
+			margin:0;
+			margin-right: 10px;
+			font-size: 0.8em;
+			line-height: 40px;
+		}
+
    </style>
 </head>
 <body>
 <div id="header"><h2 id="title">따옴</h2></div>
+<div id="subheader"><h3 id="subtitle">회원가입</h3></div>
 <div id="contents">
     <form action="jsp/Signup.jsp" id="form">
+    	<div id="guid">아이디</div>
         <input type="text" id="id" name="id" /><br><br>
+        <div id="guid">패스워드</div>
         <input type="password" id="pw" name="pw"/><br><br>
         <input type="submit" value="회원가입" />
     </form>
