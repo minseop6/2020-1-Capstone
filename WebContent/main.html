@@ -3,6 +3,8 @@
 <head>
     <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    
    <title></title>
    <style type="text/css">
         @import url("css/template.css");
@@ -21,27 +23,41 @@
 		    padding: 40px;
 		    font-size: 1.5em;
 		    margin-top: 30px;
+		    
 		}
 		html, body {
 		    margin: 0;
 		    height: 100%;
-		    overflow: hidden;
 		 }
    </style>
 </head>
 <body>
 <div id="header"><h2 id="title">따옴</h2></div>
 <div id="subheader"><h3 id="subtitle">오늘의 시</h3></div>
-<div id="contents">
-   경계<br><br>
-
-   영시 영분 영초<br>
-   생사의 모서리가<br>
-   하나가 되는 순간<br><br>
-
-   대가리가 잘린 광어가<br>
-   횟집 밖으로<br>
-   헤엄쳐간다<br>
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<div id="contents">
+			   경계<br><br>
+			
+			   영시 영분 영초<br>
+			   생사의 모서리가<br>
+			   하나가 되는 순간<br><br>
+			
+			   대가리가 잘린 광어가<br>
+			   횟집 밖으로<br>
+			   헤엄쳐간다<br>
+			</div>		
+		</div>
+		<div class="swiper-slide">
+			<div id="contents">
+				경계<br>
+				모서리<br>
+				헤엄치다<br>
+				대가리<br>
+			</div>
+		</div>
+	</div>
 </div>
 <div id="navigation">
     <img src="img/homeButton.png" class="icon" onclick="main()"/>
@@ -66,3 +82,5 @@
     	location.href = "Mypage.jsp"
     }
 </script>
+ <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+ <script>new Swiper('.swiper-container');</script>
